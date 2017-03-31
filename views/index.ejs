@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>jettegabriel - exercice 10</title>
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body>
+  <h1>jettegabriel - exercice 10</h1>
+  <table class="tableau">
+  <form id="formulaire" action="/adresse" method="POST">
+  <tr>
+    <td><input id="nom" type="text" placeholder="Nom" name="nom"></td>
+    <td><input id="prenom" type="text" placeholder="Prénom" name="prenom"></td>
+    <td><input id="telephone" type="text" placeholder="Telephone" name="telephone"></td>
+    <td><input id="ville" type="text" placeholder="ville" name="ville"></td>
+    <td><input id="codePostal" type="text" placeholder="Code postal" name="codePostal"></td>
+    <td style="display: none;"><input id="_id" type="text" placeholder="id" name="_id"></td>
+    <td><button type="submit">Soumettre</button>
+  </tr>
+  </form>
+  </table>
+
+  <% for(var i=0; i<adresse.length; i++) {%>
+    <table class="tableau" contenteditable="true">
+      <tr>
+        <td class="nom"><%= adresse[i].nom %></td>
+        <td class="prenom"><%= adresse[i].prenom %></td>
+        <td class="telephone"><%= adresse[i].telephone %></td>
+        <td class="ville"><%= adresse[i].ville %></td>
+        <td class="codePostal"><%= adresse[i].codePostal %></td>
+        <td class="_id" contenteditable="false"><%= adresse[i]._id %></td>
+      <td contenteditable="false"><a href="/detruire/<%= adresse[i]._id %>">delete</a></td>
+      <td class='modifier' contenteditable="false"><a href="#">modify</a></td>
+      </tr>
+    </table>
+  <% } %>
+
+<script type="text/javascript">
+  
+var elmModifier = document.getElementsByClassName('modifier')
+
+for (var k=0 ;k<elmModifier.length; k++)
+{
+    elmModifier[k].addEventListener('click', function(){
+    var elmLigne = this.parentNode;
+
+      document.getElementById("nom").value = elmLigne.getElementsByClassName("nom")[0].innerHTML;
+      document.getElementById("prenom").value = elmLigne.getElementsByClassName("prenom")[0].innerHTML;
+      document.getElementById("telephone").value = elmLigne.getElementsByClassName("telephone")[0].innerHTML;
+      document.getElementById("ville").value = elmLigne.getElementsByClassName("ville")[0].innerHTML;
+      document.getElementById("codePostal").value = elmLigne.getElementsByClassName("codePostal")[0].innerHTML;
+      document.getElementById("_id").value = elmLigne.getElementsByClassName("_id")[0].innerHTML;
+
+    var elmForm = document.getElementById("formulaire");
+    elmForm.submit();
+
+  })
+}
+</script>  
+
+</body>
+</html>
