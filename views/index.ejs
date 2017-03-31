@@ -3,20 +3,21 @@
 <head>
   <meta charset="UTF-8">
   <title>jettegabriel - TP2</title>
+  <!--Pour Feuille de style -->
   <link rel="stylesheet" type="text/css" href="css/style.css">
-    <!--Pour police et icônes -->
+  <!--Pour police et icônes -->
   <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
   <link rel="stylesheet" href="css/font-awesome-4.7.0/css/font-awesome.min.css">
+  <!--Pour Fonctionnement de la fonction modifier -->
+  <script src="js/client.js"></script>
 </head>
 <body>
     <h1> Gabriel Jetté - Travail pratique 2</h1>
     <h2> Carnet d'adresse </h2>
 
-
-
-
+  <!--Tableau utilisé pour l'intégration des données à la collection 'Adresse' -->
   <table contenteditable="true">
- <!--Tableau utilisé pour l'intégration des données à la collection 'Adresse' -->
+  <!--Formulaire d'ajout de données à la collection 'Adresse' -->
   <form id="formulaire" action="/adresse" method="POST">
   <tr>
     <td class="moyen"><input id="nom" type="text" placeholder="Nom" name="nom"></td>
@@ -50,34 +51,9 @@
         <td class="codePostal moyen"><%= adresse[i].codePostal %></td>
         <td class="_id long" contenteditable="false"><%= adresse[i]._id %></td>
       <td class='petit' contenteditable="false"><a href="/detruire/<%= adresse[i]._id %>"><i id="detruire" class="fa fa-trash" aria-hidden="true"></a></td>
-      <td class='modifier petit' contenteditable="false"><a href="#"><i id="modifier" class="fa fa-floppy-o" aria-hidden="true"></i></a></td>
+      <td class='modifier petit' contenteditable="false"><a href="#" onclick="modifier_adresse(this)"><i id="modifier" class="fa fa-floppy-o" aria-hidden="true"></i></a></td>
       </tr>
   <% } %>
   </table>
-  <!--Script pour la soumission des modifications ''CLIENT.JS'' -->
-<script type="text/javascript">
-var elmModifier = document.getElementsByClassName('modifier')
-//Boucle 'for' pour détecter la position de notre appel parmis les éléments présents
-for (var k=0 ;k<elmModifier.length; k++)
-{
-    //ajout d'un écouteur d'événement
-    elmModifier[k].addEventListener('click', function(){
-    var elmLigne = this.parentNode; //association à son élément parent : <tr>
-
-    //envoie des informations HTML de l'élément vers le formulaire d'ajout
-      document.getElementById("nom").value = elmLigne.getElementsByClassName("nom")[0].innerHTML;
-      document.getElementById("prenom").value = elmLigne.getElementsByClassName("prenom")[0].innerHTML;
-      document.getElementById("telephone").value = elmLigne.getElementsByClassName("telephone")[0].innerHTML;
-      document.getElementById("ville").value = elmLigne.getElementsByClassName("ville")[0].innerHTML;
-      document.getElementById("codePostal").value = elmLigne.getElementsByClassName("codePostal")[0].innerHTML;
-      document.getElementById("_id").value = elmLigne.getElementsByClassName("_id")[0].innerHTML;
-    //Soumission et envoie
-    var elmForm = document.getElementById("formulaire");
-    elmForm.submit();
-
-  })
-}
-</script>  
-
 </body>
 </html>
