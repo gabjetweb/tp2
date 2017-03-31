@@ -9,6 +9,7 @@ app.use(express.static('public'))  // pour utiliser le dossier public
 
 var db // variable qui contiendra le lien sur la BD
 
+//Connexion à la base de donnée
 MongoClient.connect('mongodb://127.0.0.1:27017/carnet_adresse', (err, database) => {
   if (err) return console.log(err)
   db = database
@@ -17,8 +18,10 @@ MongoClient.connect('mongodb://127.0.0.1:27017/carnet_adresse', (err, database) 
   })
 })
 
+//Affichage et rendu du index.ejs
 app.get('/',  (req, res) => {
    console.log('la route route get / = ' + req.url)
+   //Ajout de la fonctionnalité de tri (dans ce cas-ci - par le nom de famille)
     var cursor = db.collection('adresse').find().sort({nom: 1 }).toArray(function(err, resultat){
        if (err) return console.log(err)
     // renders index.ejs
@@ -28,25 +31,24 @@ app.get('/',  (req, res) => {
     }) 
 })
 
+//Fonction d'ajout et de modification
 app.post('/adresse',  (req, res) => {
 
-  console.log(req.body._id);
+     var ajoutAdresse={}; //Object JSON pour stockage
 
-     var ajoutAdresse={};
-    //var 
-
-    if(req.body._id !="")
+    if(req.body._id !="")//Si le ID est existant
     {
-      ajoutAdresse['_id']=ObjectID(req.body._id);
+      ajoutAdresse['_id']=ObjectID(req.body._id); //On l'attribue à l'objet JSON
     }
 
+    //Attribution du reste des valeurs
     ajoutAdresse["nom"] = req.body.nom;
     ajoutAdresse["prenom"] = req.body.prenom;
     ajoutAdresse["telephone"] = req.body.telephone;
     ajoutAdresse["ville"] = req.body.ville;
     ajoutAdresse["codePostal"] = req.body.codePostal;
 
-
+        //Sauvegarde de l'objet JSON dans la collection de la BD
         db.collection('adresse').save(ajoutAdresse, (err, result) => {
         if (err) return console.log(err)
         console.log('sauvegarder dans la BD')
@@ -54,9 +56,10 @@ app.post('/adresse',  (req, res) => {
       })
 })
 
+//Fonction de destruction d'objet
 app.get('/detruire/:id', (req, res) => {
- var id = req.params.id
- console.log(id)
+ var id = req.params.id //Récupération de l'id
+ //Destruction de l'objet par son ID
  db.collection('adresse').findOneAndDelete({"_id": ObjectID(req.params.id)}, (err, resultat) => {
  if (err) return console.log(err)
  res.redirect('/')  // redirige vers la route qui affiche la collection
