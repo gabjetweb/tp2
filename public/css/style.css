@@ -9,9 +9,20 @@ main {
   width: 75%;
   margin: 0 auto;
 }
+
+body
+{
+  font-family: 'Roboto', sans-serif;
+}
 table {
   border: 1px solid #b3b3b3;
   border-collapse: collapse;
+  margin:15px 0 15px 0;
+}
+
+h1,h2{
+  text-align: center;
+  margin:0 auto;
 }
 
 input{
