@@ -12,8 +12,11 @@
     <h1> Gabriel Jetté - Travail pratique 2</h1>
     <h2> Carnet d'adresse </h2>
 
-  <!--Tableau utilisé pour l'intégration des données à la collection 'Adresse' -->
-  <table class="tableau">
+
+
+
+  <table contenteditable="true">
+ <!--Tableau utilisé pour l'intégration des données à la collection 'Adresse' -->
   <form id="formulaire" action="/adresse" method="POST">
   <tr>
     <td class="moyen"><input id="nom" type="text" placeholder="Nom" name="nom"></td>
@@ -21,14 +24,24 @@
     <td class="moyen"><input id="telephone" type="text" placeholder="Telephone" name="telephone"></td>
     <td class="moyen"><input id="ville" type="text" placeholder="ville" name="ville"></td>
     <td class="moyen"><input id="codePostal" type="text" placeholder="Code postal" name="codePostal"></td>
-    <td class="long" style="display:none"><input id="_id" type="text" placeholder="id" name="_id"></td>
-    <td class="petit"><button type="submit"><i class="fa fa-plus-circle" aria-hidden="true"></i></button>
+    <td class="long"><input id="_id" type="text" placeholder="id (LECTURE SEULEMENT)" name="_id" readonly="readonly"></td>
+    <td class="petit"><button type="submit"><i class="fa fa-plus-circle" aria-hidden="true"></i></button></td>
+    <td class="petit" contenteditable="false"></td>
   </tr>
   </form>
-  </table>
+   <!--Entête des champs de la collection 'Adresse' -->
+        <tr id='titres' contenteditable="false">
+        <td class="nom moyen">Nom</td>
+        <td class="prenom moyen">Prénom</td>
+        <td class="telephone moyen">Téléphone</td>
+        <td class="ville moyen">Ville</td>
+        <td class="codePostal moyen">Code Postal</td>
+        <td class="_id long" >_id</td>
+      <td class='petit'></td>
+      <td class='petit'></td>
+      </tr>
   <!--Boucle pour afficher dynamiquement les entrées de la collection 'Adresse' -->
   <% for(var i=0; i<adresse.length; i++) {%>
-    <table class="tableau" contenteditable="true">
       <tr>
         <td class="nom moyen"><%= adresse[i].nom %></td>
         <td class="prenom moyen"><%= adresse[i].prenom %></td>
@@ -39,8 +52,8 @@
       <td class='petit' contenteditable="false"><a href="/detruire/<%= adresse[i]._id %>"><i id="detruire" class="fa fa-trash" aria-hidden="true"></a></td>
       <td class='modifier petit' contenteditable="false"><a href="#"><i id="modifier" class="fa fa-floppy-o" aria-hidden="true"></i></a></td>
       </tr>
-    </table>
   <% } %>
+  </table>
   <!--Script pour la soumission des modifications ''CLIENT.JS'' -->
 <script type="text/javascript">
 var elmModifier = document.getElementsByClassName('modifier')
