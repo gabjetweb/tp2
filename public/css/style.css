@@ -1,18 +1,11 @@
-main {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  width: 75%;
-  margin: 0 auto;
-}
-
 body
 {
   font-family: 'Roboto', sans-serif;
+}
+
+header{
+  margin: 15px 0 15px 0;
+
 }
 table {
   border: 1px solid #b3b3b3;
@@ -28,37 +21,32 @@ h1,h2{
 input{
   width: 100%;
 }
-th {
-  text-align: left;
-}
+
 td {
   border: 1px solid #b3b3b3;
   padding: 10px;
 }
+
+/* CLasses pour les tailles des TD */
 .petit {
   width: 5%;
-  border: 1px solid #b3b3b3;
-  padding: 10px;
 }
 .moyen {
   width: 18%;
-  border: 1px solid #b3b3b3;
-  padding: 10px;
 }
 .long {
   width: 40%;
-  border: 1px solid #b3b3b3;
-  padding: 10px;
 }
+
+/*Couleurs des icônes MODIFIER ET SUPPRIMER*/
 #modifier {
   color: green;
-   border-collapse: collapse;
 }
 #detruire {
   color: red;
-   border-collapse: collapse;
 }
 
+/*Pour les titres du tableau*/
 #titres td{
   font-weight: bold;
 }

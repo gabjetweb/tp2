@@ -1,6 +1,8 @@
 
 function modifier_adresse(elm){
 
+        //appel de la fonction à partir de l'élément cliqué
+
         var elmLigne = elm.parentNode.parentNode; //association à son élément parent : <tr>
 
         //envoie des informations HTML de l'élément vers le formulaire d'ajout
