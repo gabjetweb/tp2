@@ -1,60 +1,60 @@
 <!DOCTYPE html>
 <html lang="fr">
-<head>
-  <meta charset="UTF-8">
-  <title>jettegabriel - TP2</title>
-  <!--Pour Feuille de style -->
-  <link rel="stylesheet" type="text/css" href="css/style.css">
-  <!--Pour police et icônes -->
-  <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-  <link rel="stylesheet" href="css/font-awesome-4.7.0/css/font-awesome.min.css">
-  <!--Pour Fonctionnement de la fonction modifier -->
-  <script src="js/client.js"></script>
-</head>
-<body>
-  <header>
-    <h1> Gabriel Jetté - Travail pratique 2</h1>
-    <h2> Carnet d'adresse </h2>
- </header>
-  <!--Tableau utilisé pour l'intégration des données à la collection 'Adresse' -->
-  <table contenteditable="true">
-  <!--Formulaire d'ajout de données à la collection 'Adresse' -->
-  <form id="formulaire" action="/adresse" method="POST">
-  <tr>
-    <td class="moyen"><input id="nom" type="text" placeholder="Nom" name="nom"></td>
-    <td class="moyen"><input id="prenom" type="text" placeholder="Prénom" name="prenom"></td>
-    <td class="moyen"><input id="telephone" type="text" placeholder="Telephone" name="telephone"></td>
-    <td class="moyen"><input id="ville" type="text" placeholder="ville" name="ville"></td>
-    <td class="moyen"><input id="codePostal" type="text" placeholder="Code postal" name="codePostal"></td>
-    <td class="long"><input id="_id" type="text" placeholder="id (LECTURE SEULEMENT)" name="_id" readonly="readonly"></td>
-    <td class="petit"><button type="submit"><i class="fa fa-plus-circle" aria-hidden="true"></i></button></td>
-    <td class="petit" contenteditable="false"></td>
-  </tr>
-  </form>
-   <!--Entête des champs de la collection 'Adresse' -->
+  <head>
+    <meta charset="UTF-8">
+    <title>jettegabriel - TP2</title>
+    <!--Pour Feuille de style -->
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <!--Pour police et icônes -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link rel="stylesheet" href="css/font-awesome-4.7.0/css/font-awesome.min.css">
+    <!--Pour Fonctionnement de la fonction modifier -->
+    <script src="js/client.js"></script>
+  </head>
+  <body>
+    <header>
+      <h1> Gabriel Jetté - Travail pratique 2</h1>
+      <h2> Carnet d'adresse </h2>
+   </header>
+    <!--Tableau utilisé pour l'intégration des données à la collection 'Adresse' -->
+    <table contenteditable="true">
+    <!--Formulaire d'ajout de données à la collection 'Adresse' -->
+        <form id="formulaire" action="/adresse" method="POST">
+          <tr>
+            <td class="moyen"><input id="nom" type="text" placeholder="Nom" name="nom"></td>
+            <td class="moyen"><input id="prenom" type="text" placeholder="Prénom" name="prenom"></td>
+            <td class="moyen"><input id="telephone" type="text" placeholder="Telephone" name="telephone"></td>
+            <td class="moyen"><input id="ville" type="text" placeholder="ville" name="ville"></td>
+            <td class="moyen"><input id="codePostal" type="text" placeholder="Code postal" name="codePostal"></td>
+            <td class="long"><input id="_id" type="text" placeholder="id (LECTURE SEULEMENT)" name="_id" readonly="readonly"></td>
+            <td class="petit"><button type="submit"><i class="fa fa-plus-circle" aria-hidden="true"></i></button></td>
+            <td class="petit" contenteditable="false"></td>
+          </tr>
+        </form>
+     <!--Entête des champs de la collection 'Adresse' -->
         <tr id='titres' contenteditable="false">
-        <td class="nom moyen">Nom</td>
-        <td class="prenom moyen">Prénom</td>
-        <td class="telephone moyen">Téléphone</td>
-        <td class="ville moyen">Ville</td>
-        <td class="codePostal moyen">Code Postal</td>
-        <td class="_id long" >_id</td>
-      <td class='petit'></td>
-      <td class='petit'></td>
-      </tr>
-  <!--Boucle pour afficher dynamiquement les entrées de la collection 'Adresse' -->
-  <% for(var i=0; i<adresse.length; i++) {%>
-      <tr>
-        <td class="nom moyen"><%= adresse[i].nom %></td>
-        <td class="prenom moyen"><%= adresse[i].prenom %></td>
-        <td class="telephone moyen"><%= adresse[i].telephone %></td>
-        <td class="ville moyen"><%= adresse[i].ville %></td>
-        <td class="codePostal moyen"><%= adresse[i].codePostal %></td>
-        <td class="_id long" contenteditable="false"><%= adresse[i]._id %></td>
-      <td class='petit' contenteditable="false"><a href="/detruire/<%= adresse[i]._id %>"><i id="detruire" class="fa fa-trash" aria-hidden="true"></a></td>
-      <td class='modifier petit' contenteditable="false"><a href="#" onclick="modifier_adresse(this)"><i id="modifier" class="fa fa-floppy-o" aria-hidden="true"></i></a></td>
-      </tr>
-  <% } %>
-  </table>
-</body>
+          <td class="nom moyen">Nom</td>
+          <td class="prenom moyen">Prénom</td>
+          <td class="telephone moyen">Téléphone</td>
+          <td class="ville moyen">Ville</td>
+          <td class="codePostal moyen">Code Postal</td>
+          <td class="_id long" >_id</td>
+          <td class='petit'></td>
+          <td class='petit'></td>
+        </tr>
+    <!--Boucle pour afficher dynamiquement les entrées de la collection 'Adresse' -->
+    <% for(var i=0; i<adresse.length; i++) {%>
+        <tr>
+          <td class="nom moyen"><%= adresse[i].nom %></td>
+          <td class="prenom moyen"><%= adresse[i].prenom %></td>
+          <td class="telephone moyen"><%= adresse[i].telephone %></td>
+          <td class="ville moyen"><%= adresse[i].ville %></td>
+          <td class="codePostal moyen"><%= adresse[i].codePostal %></td>
+          <td class="_id long" contenteditable="false"><%= adresse[i]._id %></td>
+          <td class='petit' contenteditable="false"><a href="/detruire/<%= adresse[i]._id %>"><i id="detruire" class="fa fa-trash" aria-hidden="true"></a></td>
+          <td class='modifier petit' contenteditable="false"><a href="#" onclick="modifier_adresse(this)"><i id="modifier" class="fa fa-floppy-o" aria-hidden="true"></i></a></td>
+        </tr>
+    <% } %>
+    </table>
+  </body>
 </html>
